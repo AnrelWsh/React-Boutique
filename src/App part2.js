@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 import './App.css';
-import List from './comp/List part1-2.js'
+import List from './comp/A/List.js'
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 

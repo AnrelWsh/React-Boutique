@@ -2,12 +2,22 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 import './App.css';
-import List from './comp/List part1-2.js'
+import List from './comp/A/List.js'
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
 
 function App() {
-  const [list, setList] = useState([]);
+  const [nom, setNom] = useState("Anrelwsh");
+  const [inputValue, setInputValue] = useState("");
+  const [list, setList] = useState([
+    "Anrel",
+    "Clemsou",
+    "Faga"
+  ]);
+
+  function hello(name) {
+    return "Hello " + name
+  }
+
   let [user, setUser] = useState(null)
 
   function fetchRandomUser() {
@@ -41,6 +51,11 @@ function App() {
     }
   }, [user])
 
+/*  const removeItem = (indexToRemove) => {
+    const updatedList = [...list];
+    updatedList.splice(indexToRemove, 1);
+    setList(updatedList);
+  }*/
 
   const Button = styled.button`
     color: blue;
@@ -51,18 +66,22 @@ function App() {
     }
   `
 
-  const Li = styled.li`
-  color: blue;
-  background-color: red;
-  border-radius: 8px;
-  &:hover{
-    background-color: green;
-  }
-`
-
   return (
     <div className="App">
-      <header className="App-header"> 
+      <header className="App-header">
+        {
+          nom === "Anrelwsh" ? <p>Tu est anrelwsh, cc</p> : <p>Non</p>
+        }
+        <input value={inputValue} onChange={(event) => setInputValue(event.target.value)} />
+        <p>
+          Edit {hello(nom)} <code>src/App.js</code> and save to reload.
+        </p>
+        <button onClick={() => {
+          setList([...list, inputValue]);
+          setNom("Clemsou");
+        }}>
+          Clique chkl
+        </button>
         <List data={list} setData={setList} removeDataWithIndex={(listIndex) =>{
           setList(list.filter((e, index) => index !== listIndex))
         }}/>
@@ -80,7 +99,7 @@ function App() {
           </div> : null
         }
         
-        <Link to="/about">Go to about</Link>
+
 
       </header>
     </div>
@@ -88,6 +107,3 @@ function App() {
 }
 
 export default App;
-
-/*lucide-react pour les icons 
-shadcn ui pour le boostrap */
