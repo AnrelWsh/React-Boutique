@@ -1,7 +1,5 @@
-// Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-// Define a service using a base URL and expected endpoints
 export const productAPI = createApi({
   reducerPath: 'productAPI',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://iim.etherial.fr' }),
@@ -16,14 +14,7 @@ export const productAPI = createApi({
         },
         providesTags: ["comments"]
     }),
-/*    createProduct: builder.mutation({
-        query: (data) => ({
-            url: '/products',
-            method: 'POST',
-            body: data
-        }),
-        invalidatesTags: ["products"] //on valide tag
-    }),*/
+
     createComment: builder.mutation({
       query: (data) => ({
         url: `/products/${data.id}/comments`,
@@ -35,6 +26,4 @@ export const productAPI = createApi({
   }),
 })
 
-// Export hooks for usage in functional components, which are
-// auto-generated based on the defined endpoints
 export const { useGetProductsQuery, useGetCommentsQuery, useCreateCommentMutation } = productAPI
