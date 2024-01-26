@@ -17,7 +17,6 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <h1>Home</h1>
       {isFetching ? (
         <p>Fetching...</p>
       ) : (
@@ -33,7 +32,7 @@ const AllProducts = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-`
+`;
 const ProductContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -43,6 +42,7 @@ const ProductContainer = styled.div`
   margin: 10px;
   text-align: center;
   width: 25%;
+
   a{
   text-decoration: none;
   color: black;
@@ -54,7 +54,7 @@ const ProductTitle = styled.p`
   font-weight: bold;
 `;
 
-const ProductPrice = styled.span`
+const ProductPrice = styled.p`
   color: green;
 `;
 

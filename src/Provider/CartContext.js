@@ -27,8 +27,25 @@ export const CartProvider = ({ children }) => {
     return cart.reduce((total, product) => total + product.quantity, 0);
   };
 
+  const removeFromCart = (product) => {
+    const existingProductIndex = cart.findIndex(
+       (item) => item.title === product.title
+    );
+   
+    if (existingProductIndex !== -1 && cart[existingProductIndex].quantity > 1) {
+       const updatedCart = [...cart];
+       updatedCart[existingProductIndex].quantity -= 1;
+       setCart(updatedCart);
+    } else if (existingProductIndex !== -1) {
+       const updatedCart = cart.filter(
+         (item) => item.title !== product.title
+       );
+       setCart(updatedCart);
+    }
+   };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, clearCart, getTotalQuantity }}>
+    <CartContext.Provider value={{ cart, addToCart, clearCart, getTotalQuantity, removeFromCart }}>
       {children}
     </CartContext.Provider>
   );
